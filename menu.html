@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .menu {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .menu button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <h1>Меню</h1>
+        <button id="btn1">Кнопка 1 (ніщо)</button>
+        <button id="btn2">Кнопка 2 (ніщо)</button>
+        <button id="btn3">Перейти до карти</button>
+    </div>
+    <script>
+        // Кнопки
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
+        const btn3 = document.getElementById('btn3');
+
+        // Обробники подій
+        btn1.addEventListener('click', () => alert('Кнопка 1 ще нічого не робить!'));
+        btn2.addEventListener('click', () => alert('Кнопка 2 ще нічого не робить!'));
+        btn3.addEventListener('click', () => {
+            // Перехід на іншу сторінку
+            window.location.href = 'map.html'; // Замість 'map.html' поставте назву вашої сторінки з картою
+        });
+    </script>
+</body>
+</html>
