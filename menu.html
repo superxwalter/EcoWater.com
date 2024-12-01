@@ -6,34 +6,48 @@
     <title>Меню</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            color: #333;
         }
         .menu {
             text-align: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 90%;
+        }
+        .menu h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #0056b3;
         }
         .menu button {
+            width: 100%;
             margin: 10px 0;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 18px;
-            color: #fff;
+            color: white;
             background-color: #007bff;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s ease;
         }
         .menu button:hover {
             background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+        .menu button:active {
+            transform: translateY(1px);
         }
     </style>
 </head>
