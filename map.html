@@ -42,7 +42,7 @@
         .close-popup {
             position: absolute;
             top: 25%;
-            right: 6%;
+            right: 7%;
             transform: translate(-50%,-150%); /* Центруємо по вертикалі */
             font-size: 30px; /* Розмір букви "х" */
             color: white;
@@ -155,8 +155,13 @@
 
             title.textContent = properties.name || 'Невідома річка';
             content.innerHTML = ` 
-                <strong>Тип:</strong> ${properties.natural || 'Немає даних'}<br>
-                <strong>Довжина:</strong> ${properties.description || 'Немає даних'}<br>
+                <strong>Інша назва:</strong> ${properties.alt_name || '-'}<br>
+                <strong>Тип:</strong> ${properties.natural || '-'}<br>
+                <strong>Довжина:</strong> ${properties.description || '-'}<br>
+                <strong>Площа басейну:</strong> ${properties.volume || '-'}<br>
+                <strong>Середня глибина:</strong> ${properties.m_depth || '-'}<br>
+                <strong>Максимальна глибина:</strong> ${properties.depth || '-'}<br>
+                <strong>Ширина долини:</strong> ${properties.dolina || '-'}<br>
                 <strong>Вікіпедія:</strong> 
                 ${properties.wikipedia 
                     ? `<a href="https://uk.wikipedia.org/wiki/${properties.wikipedia}" target="_blank">Перейти</a>` 
@@ -180,4 +185,5 @@
     </script>
 </body>
 </html>
+
 
