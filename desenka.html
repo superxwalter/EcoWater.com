@@ -53,6 +53,7 @@
             background-color: rgba(0, 123, 255, 0.8);
             border-radius: 30px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
@@ -83,6 +84,12 @@
             <li>Магній</li>
         </ul>
     </div>
-    <a href="map.html" class="back-to-map">Перейти до карти</a>
+    <button class="back-to-map" onclick="goToMap()">Перейти до карти</button>
+
+    <script>
+        function goToMap() {
+            window.location.href = 'map.html'; // Замість 'map.html' вкажіть шлях до вашої сторінки з картою
+        }
+    </script>
 </body>
 </html>
