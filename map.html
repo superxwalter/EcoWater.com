@@ -193,10 +193,27 @@
             ? `<a href="https://uk.wikipedia.org/wiki/${properties.wikipedia}" target="_blank">Перейти</a>` 
             : 'Немає даних'}<br>
         <button
-        onclick="goToDetails('${properties.id || ''}')" 
-        style="margin-top: 10px; padding: 5px 10px; font-size: 16px;">
-        <strong>Детальніше</strong>
-        </button>
+    onclick="goToDetails('${properties.id || ''}')"
+    style="
+        margin-top: 10px; 
+        padding: 10px 20px; 
+        font-size: 16px; 
+        font-weight: bold; 
+        color: white; 
+        background-color: #007bff; 
+        border: none; 
+        border-radius: 8px; 
+        cursor: pointer; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+        transition: background-color 0.3s, transform 0.2s ease;
+    "
+    onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='translateY(-3px)';"
+    onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='translateY(0)';"
+    onmousedown="this.style.transform='translateY(1px)';"
+    onmouseup="this.style.transform='translateY(-3px)';"
+>
+    <strong>Детальніше</strong>
+</button>
     `;
 
     popup.classList.add('active'); // Додаємо клас активного стану
@@ -222,5 +239,3 @@ function closePopup() {
     </script>
 </body>
 </html>
-
-
