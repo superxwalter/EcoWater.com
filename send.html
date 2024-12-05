@@ -167,6 +167,16 @@
         function goToMenu() {
             window.location.href = 'menu.html';
         }
+
+        // Перевірка на кількість файлів
+        document.getElementById('alertForm').addEventListener('submit', function(event) {
+            const files = document.getElementById('photos').files;
+            if (files.length > 3) {
+                alert("Ви можете завантажити тільки 3 файли.");
+                event.preventDefault(); // Зупиняє відправку форми
+            }
+        });
     </script>
 </body>
 </html>
+
