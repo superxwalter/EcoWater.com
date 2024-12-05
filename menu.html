@@ -69,7 +69,7 @@
     <div class="menu">
         <h1>Меню</h1>
         <button id="btn1">Повідомити про забруднення</button>
-        <button id="btn2">Кнопка 2 (ніщо)</button>
+        <button id="btn2">Про програму</button>
         <button id="btn3">Перейти до карти</button>
     </div>
 
@@ -88,12 +88,17 @@
             window.location.href = 'send.html';
         });
 
-        btn2.addEventListener('click', () => alert('Кнопка 2 ще нічого не робить!'));
+        btn2.addEventListener('click', () => {
+            // Перехід на сторінку about.html
+            window.location.href = 'about.html';
+        });
 
         btn3.addEventListener('click', () => {
-            // Перехід на іншу сторінку
+            // Перехід на сторінку map.html
             window.location.href = 'map.html'; // Замість 'map.html' поставте назву вашої сторінки з картою
         });
     </script>
 </body>
 </html>
+
+
