@@ -7,97 +7,118 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         body {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f8ff; /* Світло-блакитний фон */
-    color: #333; /* Темний текст */
-    }
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+        }
 
-    #map {
-    flex-grow: 1;
-    position: relative;
-    border-top: 5px solid #0056b3; /* Темно-синій акцент */
-    }
+        #map {
+            flex-grow: 1;
+            position: relative;
+            border-top: 5px solid #0056b3;
+        }
 
-    .popup-box {
-    position: fixed;
-    bottom: -25%; /* Початкове положення - сховано */
-    left: 0;
-    width: 100%;
-    height: 25%;
-    background-color: rgba(97, 147, 221, 0.6);
-    color: rgba(47, 0, 255, 0.95);
-    padding: 20px;
-    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
-    overflow-y: auto;
-    z-index: 1000;
-    text-align: left;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    transform: translateY(100%); /* Сховано поза екраном */
-    transition: transform 0.5s ease; /* Плавний перехід */
-    }
+        .popup-box {
+            position: fixed;
+            bottom: -40%;
+            left: 0;
+            width: 100%;
+            height: 35%;
+            background-color: rgba(97, 147, 221, 0.9);
+            color: rgba(47, 0, 255, 0.95);
+            padding: 20px;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+            z-index: 1000;
+            text-align: left;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
 
-.popup-box.active {
-    transform: translateY(-82.5%); /* Видимий стан */
-}
+        .popup-box.active {
+            transform: translateY(-90%);
+        }
 
-    .popup-box h2 {
-    margin-top: 0;
-    color: rgba(0, 54, 111, 0.95); /* Золотистий заголовок */
-    }
+        .popup-box h2 {
+            margin-top: 0;
+            color: #003666;
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-    .popup-content {
-    position: relative;
-    margin-left: 0%;
-    transform: translateX(0%);
-    line-height: 1.6; /* Зручний інтервал між рядками */
-    font-size: 16px; /* Оптимальний розмір тексту */
-    }
+        .popup-content {
+            margin-left: 0;
+            line-height: 1.6;
+            font-size: 16px;
+        }
 
-    .close-popup {
-        position: absolute;
-        top: 25%;
-        right: 7%;
-        transform: translate(-50%,-150%); /* Центруємо по вертикалі */
-        font-size: 30px; /* Розмір букви "х" */
-        color: rgb(0, 0, 0);
-        cursor: pointer;
-        background: none;
-        border: none;
-        line-height: 1;
-        font-weight: bold;
-        z-index: 1001; /* Вище за вікно */
-    }
+        .close-popup {
+            position: absolute;
+            top: 25%;
+            right: 7%;
+            transform: translate(-50%,-150%);
+            font-size: 30px;
+            color: black;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+            font-weight: bold;
+            z-index: 1001;
+        }
 
-    .close-popup:hover {
-    color: red;
-    transform: translate(-50%, -150%) rotate(90deg); /* Анімація обертання */
-    }
+        .close-popup:hover {
+            color: red;
+            transform: translate(-50%, -150%) rotate(90deg);
+        }
 
-    .button-to-menu {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(0, 86, 179, 0.8); /* Темно-синій фон з прозорістю */
-    color: rgb(255, 255, 255);
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    z-index: 1001;
-    border-radius: 5px; /* Закруглені кути */
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    }
+        .button-to-menu {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 86, 179, 0.8);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 1001;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
 
-    .button-to-menu:hover {
-    background-color: rgba(0, 86, 179, 1); /* Більш насичений синій при наведенні */
-    transform: translateY(-3px); /* Легка анімація підйому */
-    }
+        .button-to-menu:hover {
+            background-color: rgba(0, 86, 179, 1);
+            transform: translateY(-3px);
+        }
 
+        .popup-content button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .popup-content button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        .popup-content button:active {
+            transform: translateY(1px);
+        }
     </style>
 </head>
 <body>
@@ -113,23 +134,19 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Ініціалізація карти
-        const map = L.map('map').setView([50.4501, 30.5234], 12); // Координати Києва
+        const map = L.map('map').setView([50.4501, 30.5234], 12);
 
-        // Додавання тайл-сервера OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Завантаження GeoJSON з URL
-        const geojsonUrl = 'maptest.geojson'; // Замініть на правильний шлях до вашого GeoJSON
+        const geojsonUrl = 'maptest.geojson';
 
-        let currentMarker = null; // Мітка для відображення на мапі
+        let currentMarker = null;
 
         fetch(geojsonUrl)
             .then(response => response.json())
             .then(data => {
-                // Додаємо GeoJSON на карту
                 const geojsonLayer = L.geoJSON(data, {
                     style: function () {
                         return {
@@ -140,29 +157,23 @@
                         };
                     },
                     onEachFeature: function (feature, layer) {
-                        // Додаємо подію для кліку
                         layer.on('click', function (e) {
-                            e.originalEvent.preventDefault(); // Запобігаємо подальшій обробці кліку
+                            e.originalEvent.preventDefault();
 
-                            // Додаємо мітку
                             if (currentMarker) {
                                 map.removeLayer(currentMarker);
                             }
                             currentMarker = L.marker(e.latlng).addTo(map);
 
-                            // Відображаємо вікно
                             showPopup(feature.properties);
                         });
                     }
                 }).addTo(map);
 
-                // Додаємо глобальну перевірку для кліків поза річками
                 map.on('click', function (e) {
-                    // Перевіряємо, чи клік поза GeoJSON
                     if (!geojsonLayer.getBounds().contains(e.latlng)) {
                         closePopup();
 
-                        // Видаляємо мітку, якщо вона є
                         if (currentMarker) {
                             map.removeLayer(currentMarker);
                             currentMarker = null;
@@ -174,64 +185,45 @@
                 console.error('Помилка при завантаженні GeoJSON:', error);
             });
 
-            function showPopup(properties) {
-    const popup = document.getElementById('popup');
-    const title = document.getElementById('popup-title');
-    const content = document.getElementById('popup-content');
+        function showPopup(properties) {
+            const popup = document.getElementById('popup');
+            const title = document.getElementById('popup-title');
+            const content = document.getElementById('popup-content');
 
-    title.textContent = properties.name || 'Невідома річка';
-    content.innerHTML = ` 
-        <strong>Інша назва:</strong> ${properties.alt_name || '-'}<br>
-        <strong>Тип:</strong> ${properties.natural || '-'}<br>
-        <strong>Довжина:</strong> ${properties.description || '-'}<br>
-        <strong>Площа басейну:</strong> ${properties.volume || '-'}<br>
-        <strong>Середня глибина:</strong> ${properties.m_depth || '-'}<br>
-        <strong>Максимальна глибина:</strong> ${properties.depth || '-'}<br>
-        <strong>Ширина долини:</strong> ${properties.dolina || '-'}<br>
-        <strong>Вікіпедія:</strong> 
-        ${properties.wikipedia 
-            ? `<a href="https://uk.wikipedia.org/wiki/${properties.wikipedia}" target="_blank">Перейти</a>` 
-            : 'Немає даних'}<br>
-        <button
-    onclick="goToDetails('${properties.id || ''}')"
-    style="
-        margin-top: 10px; 
-        padding: 10px 20px; 
-        font-size: 16px; 
-        font-weight: bold; 
-        color: white; 
-        background-color: #007bff; 
-        border: none; 
-        border-radius: 8px; 
-        cursor: pointer; 
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-        transition: background-color 0.3s, transform 0.2s ease;
-    "
-    onmouseover="this.style.backgroundColor='#0056b3'; this.style.transform='translateY(-3px)';"
-    onmouseout="this.style.backgroundColor='#007bff'; this.style.transform='translateY(0)';"
-    onmousedown="this.style.transform='translateY(1px)';"
-    onmouseup="this.style.transform='translateY(-3px)';"
->
-    <strong>Детальніше</strong>
-</button>
-    `;
+            title.textContent = properties.name || 'Невідома річка';
+            content.innerHTML = ` 
+                <strong>Інша назва:</strong> ${properties.alt_name || '-'}<br>
+                <strong>Тип:</strong> ${properties.natural || '-'}<br>
+                <strong>Довжина:</strong> ${properties.description || '-'}<br>
+                <strong>Площа басейну:</strong> ${properties.volume || '-'}<br>
+                <strong>Середня глибина:</strong> ${properties.m_depth || '-'}<br>
+                <strong>Максимальна глибина:</strong> ${properties.depth || '-'}<br>
+                <strong>Ширина долини:</strong> ${properties.dolina || '-'}<br>
+                <strong>Вікіпедія:</strong> 
+                ${properties.wikipedia 
+                    ? `<a href="https://uk.wikipedia.org/wiki/${properties.wikipedia}" target="_blank">Перейти</a>` 
+                    : 'Немає даних'}<br>
+                <button onclick="goToDetails('${properties.id || ''}')">
+                    <strong>Детальніше</strong>
+                </button>
+            `;
 
-    popup.classList.add('active'); // Додаємо клас активного стану
-}
+            popup.classList.add('active');
+        }
 
-function closePopup() {
-    const popup = document.getElementById('popup');
-    popup.classList.remove('active'); // Забираємо клас активного стану
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            popup.classList.remove('active');
 
-    // Видаляємо мітку
-    if (currentMarker) {
-        map.removeLayer(currentMarker);
-        currentMarker = null;
-    }
-}
+            if (currentMarker) {
+                map.removeLayer(currentMarker);
+                currentMarker = null;
+            }
+        }
+
         function goToDetails(riverId) {
             if (riverId) {
-                window.location.href = `${riverId}.html`; // Посилання на окрему сторінку для річки
+                window.location.href = `${riverId}.html`;
             } else {
                 alert('Детальні дані недоступні для цієї річки.');
             }
@@ -239,3 +231,4 @@ function closePopup() {
     </script>
 </body>
 </html>
+
