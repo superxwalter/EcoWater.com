@@ -7,17 +7,26 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f8ff;
-            margin: 0;
+            background: linear-gradient(45deg, #0072ff, #00c6ff, #0072ff);
+            background-size: 300% 300%;
+            animation: background-flow 8s infinite alternate;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             height: 100vh;
-            color: #333;
-            position: relative;
-            overflow: hidden; /* Для того, щоб зображення не виходило за межі екрана */
+            overflow: hidden;
+            color: #fff;
         }
+
+        @keyframes background-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
         .menu {
             text-align: center;
             background-color: #ffffff;
@@ -27,13 +36,15 @@
             max-width: 400px;
             width: 90%;
             z-index: 1;
-            position: relative; /* Для того, щоб меню було попереду зображення */
+            position: relative;
         }
+
         .menu h1 {
             margin-bottom: 20px;
             font-size: 24px;
             color: #0056b3;
         }
+
         .menu button {
             width: 100%;
             margin: 10px 0;
@@ -47,37 +58,41 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s, transform 0.2s ease;
         }
+
         .menu button:hover {
             background-color: #0056b3;
             transform: translateY(-3px);
         }
+
         .menu button:active {
             transform: translateY(1px);
         }
-        /* Для зображення */
-        .footer-img {
+
+        .raindrop {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Забезпечує, щоб зображення займало весь екран */
-            z-index: 0;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            opacity: 0;
+            animation: raindrop-fall 5s infinite linear;
         }
 
-        /* Для мобільних пристроїв */
-        @media (max-width: 768px) {
-            .footer-img {
-                height: 100%; /* Для мобільних пристроїв зображення буде покривати весь екран */
-                position: fixed; /* Зображення фіксоване і покриває весь екран */
-                top: 0;
-                left: 0;
-                z-index: -1; /* Зображення буде знаходитися за усім контентом */
+        @keyframes raindrop-fall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100vh) scale(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) scale(1);
             }
         }
     </style>
 </head>
 <body>
+
+    <!-- Меню -->
     <div class="menu">
         <h1>Меню</h1>
         <button id="btn1">Повідомити про забруднення</button>
@@ -85,16 +100,25 @@
         <button id="btn3">Перейти до карти</button>
     </div>
 
-    <!-- Додаємо зображення -->
-    <img src="water.jpg" alt="Waves" class="footer-img">
-
     <script>
-        // Кнопки
+        function createRaindrop() {
+            const raindrop = document.createElement('div');
+            raindrop.className = 'raindrop';
+            raindrop.style.left = Math.random() * window.innerWidth + 'px';
+            raindrop.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(raindrop);
+
+            setTimeout(() => {
+                raindrop.remove();
+            }, 5000);  // Видаляє краплю через 5 секунд
+        }
+
+        setInterval(createRaindrop, 100);  // Генерує краплю кожні 100 мс
+
         const btn1 = document.getElementById('btn1');
         const btn2 = document.getElementById('btn2');
         const btn3 = document.getElementById('btn3');
 
-        // Обробники подій
         btn1.addEventListener('click', () => {
             window.location.href = 'send.html';
         });
@@ -107,6 +131,7 @@
             window.location.href = 'map.html';
         });
     </script>
+
 </body>
 </html>
 
