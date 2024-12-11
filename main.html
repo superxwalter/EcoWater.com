@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoWater</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #0072ff, #00c6ff, #0072ff);
+            background-size: 300% 300%;
+            animation: background-flow 8s infinite alternate;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        @keyframes background-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .title {
+            font-size: 80px;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            text-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 30px 90px rgba(0, 0, 0, 0.1);
+            letter-spacing: 2px;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 114, 255, 0.5), transparent);
+            animation: pulse 6s infinite;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.4;
+            }
+        }
+
+        .raindrop {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            opacity: 0;
+            animation: raindrop-fall 5s infinite linear;
+        }
+
+        @keyframes raindrop-fall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100vh) scale(0.5);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) scale(1);
+            }
+        }
+
+        .button {
+            margin-top: 50px;
+            padding: 20px 60px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #0072ff;
+            background: linear-gradient(to right, #ffffff, #e6f7ff);
+            border: 2px solid #fff;
+            border-radius: 50px;
+            box-shadow: 
+                0 10px 20px rgba(0, 0, 0, 0.4), 
+                0 15px 40px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 300%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: skewX(-45deg);
+            transition: 0.5s ease-out;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #d6edff, #ffffff);
+        }
+
+        .button:hover:before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">EcoWater</div>
+    <div class="glow"></div>
+    <!-- Генерація крапель -->
+    <div class="raindrop" style="left: 10%; animation-delay: 0s;"></div>
+    <div class="raindrop" style="left: 30%; animation-delay: 1s;"></div>
+    <div class="raindrop" style="left: 50%; animation-delay: 2s;"></div>
+    <div class="raindrop" style="left: 70%; animation-delay: 3s;"></div>
+    <div class="raindrop" style="left: 90%; animation-delay: 4s;"></div>
+    <button class="button" onclick="window.location.href='menu.html'">Перейти на сайт</button>
+</body>
+</html>
