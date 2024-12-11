@@ -19,7 +19,7 @@
         #map {
             flex-grow: 1;
             position: relative;
-            border-top: 5px solid #0056b3;
+            border-top: 5px solid rgba(28, 119, 255, 0.9);
         }
 
         .popup-box {
@@ -150,9 +150,9 @@
                 const geojsonLayer = L.geoJSON(data, {
                     style: function () {
                         return {
-                            color: '#0000FF',
+                            color: 'rgba(28, 119, 255, 0.9)',
                             weight: 1,
-                            fillColor: '#0000FF',
+                            fillColor: 'rgba(28, 119, 255, 0.9)',
                             fillOpacity: 0.2
                         };
                     },
@@ -231,4 +231,6 @@
     </script>
 </body>
 </html>
+
+
 
