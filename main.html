@@ -136,6 +136,51 @@
         .button:hover:before {
             left: 100%;
         }
+    /* Основні стилі */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(45deg, #0072ff, #00c6ff, #0072ff);
+        background-size: 300% 300%;
+        animation: background-flow 8s infinite alternate;
+        overflow: hidden;
+        color: #fff;
+    }
+
+    .title {
+        font-size: 80px;
+        font-weight: bold;
+        color: #fff;
+        text-transform: uppercase;
+        text-shadow: 
+            0 10px 30px rgba(0, 0, 0, 0.5),
+            0 20px 60px rgba(0, 0, 0, 0.3),
+            0 30px 90px rgba(0, 0, 0, 0.1);
+        letter-spacing: 2px;
+        position: relative;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    /* Інші стилі для анімацій та кнопок */
+
+    /* Media query для мобільних пристроїв */
+    @media (max-width: 480px) {
+        .title {
+            font-size: 50px; /* Зменшення розміру заголовку для мобільних екранів */
+            padding: 10px;
+        }
+        .button {
+            padding: 15px 40px;
+            font-size: 18px;
+        }
+    }
+
     </style>
 </head>
 <body>
@@ -150,3 +195,4 @@
     <button class="button" onclick="window.location.href='menu.html'">Перейти на сайт</button>
 </body>
 </html>
+
